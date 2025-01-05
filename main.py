@@ -3,6 +3,8 @@ from adafruit_debouncer import Debouncer
 
 RECIPIANT_IP = "192.168.0.8"
 RECIPIANT_PORT = 8080
+PINS = [board.GP15, board.GP14, board.GP13, board.GP12]
+
 ssid = secret.ssid
 password = secret.password
 
@@ -19,9 +21,8 @@ osc_client = microosc.OSCClient(socket_pool, RECIPIANT_IP, RECIPIANT_PORT)
 msg = microosc.OscMsg( "/button/buzzer", [-1], ("i") )  # fmt: skip
 
 
-pins = [board.GP15, board.GP14, board.GP13, board.GP12]
 switches = []
-for pin in pins:
+for pin in PINS:
     button = digitalio.DigitalInOut(pin)
     button.switch_to_input(pull=digitalio.Pull.DOWN)
     switches.append(Debouncer(button))
