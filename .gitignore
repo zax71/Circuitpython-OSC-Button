@@ -1,0 +1,4 @@
+secret.py
+.fseventsd/
+__pycache__/
+boot_out.txt
